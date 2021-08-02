@@ -30,6 +30,9 @@ export const hitHandler: Command = {
                 health.add(member.displayName + 'health', 100);
             }
 
+        }else{
+            const myMsg = await msg.channel.send('You must choose someone to hit');
+            myMsg.react('🙃')
         }
     }
 }
