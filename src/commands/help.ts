@@ -1,12 +1,11 @@
 import { MessageEmbed } from "discord.js";
 import { client, cmds, PREFIX } from "..";
-import { Command, CommandWithAlias } from "../types/Command";
+import { Command } from "../types/Command";
 
-export const help: CommandWithAlias = {
+export const helpHandler: Command = {
     title: 'help',
     category: 'STATUS',
     description: 'List of help commands',
-    alias: ['h', 'helpmeplz'],
     exec: async (msg) => {
         let Embed = new MessageEmbed()
             .setTitle('Commands')

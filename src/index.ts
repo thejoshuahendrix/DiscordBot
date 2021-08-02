@@ -4,18 +4,29 @@ import chalk from 'chalk';
 
 import db, { fetch } from 'quick.db';
 import { test } from './commands/test';
-import { Command, CommandWithAlias } from './types/Command';
-import { help } from './commands/help';
+import { Command } from './types/Command';
+import { helpHandler } from './commands/help';
+import { profileHandler } from './commands/profile';
+import { hitHandler } from './commands/hit';
+import { helloHandler } from './commands/hello';
+import { botHandler, resetbotHandler } from './commands/bot';
+import { buyHandler } from './commands/buy';
+import { redeemHandler } from './commands/redeem';
+import { healthHandler } from './commands/health';
+import { imageHandler } from './commands/image';
+import { killHandler } from './commands/kill';
 
 config();
 
 
-let economy = new db.table('economy');
+export let economy = new db.table('economy');
 
-let health = new db.table('health');
+export let health = new db.table('health');
 
-let time = new Date();
-
+export let time = new Date();
+export let resetTime = () => {
+    time = new Date();
+}
 
 export const client = new Client();
 client.once('ready', () => {
@@ -30,10 +41,20 @@ export const metrics = {
     totalMessages: 0
 };
 export const PREFIX = '!';
-// let commands = ['help', 'kill', 'profile', 'hello', 'bot', 'resetbot', 'server', 'buy', 'redeem', 'hit', 'health', 'image'];
-export const cmds : Command[] = [
+// let commands = ['kill',];
+export const cmds: Command[] = [
     test,
-    help
+    helpHandler,
+    profileHandler,
+    hitHandler,
+    helloHandler,
+    botHandler,
+    resetbotHandler,
+    buyHandler,
+    redeemHandler,
+    healthHandler,
+    imageHandler,
+    killHandler
 ];
 
 client.on('message', async (message) => {
@@ -111,7 +132,7 @@ client.on('message', async (message) => {
 //             .setColor("#000")
 //             .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
 //         )
-//         botCalls++;
+//         
 //     }
 //     //hello
 //     if (message.cleanContent.toLowerCase().startsWith(PREFIX + commands[3])) {
@@ -224,7 +245,7 @@ client.on('message', async (message) => {
 //                 `${message.member.displayName} has ${health.get(message.member.displayName + 'health')} health`
 //             );
 //         }
-        
+
 //         botCalls++;
 
 //     }
