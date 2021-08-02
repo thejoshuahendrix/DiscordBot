@@ -204,6 +204,13 @@ client.on('message', async (message) => {
 
 });
 
+
+
+client.on('messageReactionAdd', async (reaction) => {
+    if(reaction.message.author ! == client.user)
+        reaction.message.react(reaction.emoji);
+})
+
 //channel create listener
 client.on("channelCreate", function (channel) {
     console.log(`channelCreate: ${channel.id}`);
@@ -220,7 +227,6 @@ client.on('voiceStateUpdate', (before, after) => {
         console.log('Person joined' + after.channel.name)
     }
 })
-
 
 
 client.login(process.env.DISCORD_TOKEN);
