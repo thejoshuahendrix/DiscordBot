@@ -1,4 +1,5 @@
 import { MessageEmbed } from "discord.js";
+import { metrics } from "..";
 import { Command } from "../types/Command";
 
 
@@ -11,6 +12,7 @@ export const serverHandler: Command = {
             .setDescription('This server is ' + msg.guild.name)
             .addField('ID:', msg.guild.id)
             .addField('Members', msg.guild.memberCount)
+            .addField('Total Messages since Bot uptime:', metrics.totalMessages)
             .setColor('#F00')
             .setThumbnail(msg.guild.iconURL({ dynamic: true }) || '')
         );
