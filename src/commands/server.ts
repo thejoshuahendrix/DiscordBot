@@ -5,6 +5,7 @@ import { Command } from "../types/Command";
 
 export const serverHandler: Command = { 
     title: 'server',
+    alias: 'serverinfo',
     category: 'STATUS',
     description: 'Display information about the server',
     exec: async (msg) => {

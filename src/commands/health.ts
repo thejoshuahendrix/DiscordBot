@@ -4,6 +4,7 @@ import { Command } from "../types/Command";
 
 export const healthHandler: Command = {
     title: 'health',
+    alias: 'hp',
     category: 'COMBAT',
     description: 'Display the health of yourself or another person',
     exec: async (msg) => {

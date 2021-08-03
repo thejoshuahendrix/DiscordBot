@@ -2,6 +2,7 @@ import { Command } from "../types/Command";
 
 export const test: Command = {
     title: 'test',
+    alias: 't',
     category: 'STATUS',
     description: 'test',
     exec: async (msg) => {

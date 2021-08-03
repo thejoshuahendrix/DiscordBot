@@ -1,8 +1,7 @@
 import { config } from 'dotenv';
-import { Client, Message, MessageEmbed } from 'discord.js';
+import { Client } from 'discord.js';
 import chalk from 'chalk';
-
-import db, { fetch } from 'quick.db';
+import db from 'quick.db';
 import { test } from './commands/test';
 import { Command } from './types/Command';
 import { helpHandler } from './commands/help';
@@ -15,6 +14,7 @@ import { redeemHandler } from './commands/redeem';
 import { healthHandler } from './commands/health';
 import { imageHandler } from './commands/image';
 import { killHandler } from './commands/kill';
+import { serverHandler } from './commands/server';
 
 config();
 
@@ -43,7 +43,6 @@ export const metrics = {
 export const PREFIX = '!';
 
 export const cmds: Command[] = [
-    test,
     helpHandler,
     profileHandler,
     hitHandler,
@@ -54,16 +53,19 @@ export const cmds: Command[] = [
     redeemHandler,
     healthHandler,
     imageHandler,
-    killHandler
+    killHandler,
+    serverHandler
 ];
 
+
+//message listener
 client.on('message', async (message) => {
     if (message.author.bot)
         return;
     metrics.totalMessages++;
     console.log(message.member.displayName + ': ' + message.content);
     for (const cmd of cmds) {
-        if (message.cleanContent.toLowerCase().startsWith(PREFIX + cmd.title)) {
+        if (message.cleanContent.toLowerCase().startsWith(PREFIX + cmd.title || PREFIX + cmd.alias)) {
             await cmd.exec(message);
             metrics.totalCalls++;
             break;
@@ -72,10 +74,9 @@ client.on('message', async (message) => {
 });
 
 
-
-
+//reaction listener
 client.on('messageReactionAdd', async (reaction) => {
-    if (reaction.message.author! == client.user)
+    if (reaction.message.author !== client.user)
         reaction.message.react(reaction.emoji);
 })
 
@@ -95,6 +96,9 @@ client.on('voiceStateUpdate', (before, after) => {
         console.log('Person joined' + after.channel.name)
     }
 })
+
+
+
 
 
 client.login(process.env.DISCORD_TOKEN);

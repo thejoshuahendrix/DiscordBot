@@ -2,6 +2,7 @@ import { Message } from "discord.js";
 
 export type Command = {
     title: string;
+    alias: string;
     category: 'STATUS' | 'COMBAT' | 'STORE';
     description: string;
     exec: (message : Message) => (Promise<void> | void);

@@ -3,6 +3,7 @@ import { Command } from "../types/Command";
 
 export const hitHandler: Command = {
     title: 'hit',
+    alias: 'attack',
     category: 'COMBAT',
     description: 'Hit another member',
     exec: async (msg) => {
@@ -20,7 +21,6 @@ export const hitHandler: Command = {
             myMessage.react('⚔️')
 
             let afterlife = ['heaven', 'hell'];
-
             let afterlifeEmoji = ['😇', '😈'];
             let afterlifeRand = Math.round(Math.random() * 1);
 

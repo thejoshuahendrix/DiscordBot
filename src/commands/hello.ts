@@ -3,6 +3,7 @@ import { Command } from "../types/Command";
 
 export const helloHandler: Command = { 
     title:'hello',
+    alias: 'hi',
     category: 'STATUS',
     description: 'Get a nice message from the bot',
     exec: async (msg) => {

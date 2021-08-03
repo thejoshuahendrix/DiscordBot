@@ -5,6 +5,7 @@ import { Command } from "../types/Command";
 
 export const botHandler: Command = {
     title: 'bot',
+    alias: 'botinfo',
     category: 'STATUS',
     description: 'Display metrics on the bot',
     exec: async (msg) => {
@@ -19,6 +20,7 @@ export const botHandler: Command = {
 
 export const resetbotHandler: Command = {
     title: 'resetbot',
+    alias: 'restartbot',
     category: 'STATUS',
     description: 'Reset bot calls and boot time.',
     exec: async (msg) => {

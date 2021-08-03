@@ -2,6 +2,7 @@ import { Command } from "../types/Command";
 
 export const killHandler: Command = { 
     title: 'kill',
+    alias: 'murder',
     category: 'STATUS',
     description: 'Try to kill another person',
     exec: async (msg) => {

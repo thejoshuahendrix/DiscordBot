@@ -3,6 +3,7 @@ import { Command } from "../types/Command";
 
 export const imageHandler: Command = {
     title: 'image',
+    alias: 'pic',
     category: 'STATUS',
     description: 'Display random image',
     exec: async (msg) => {
